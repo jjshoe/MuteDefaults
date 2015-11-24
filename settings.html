@@ -1,0 +1,49 @@
+<!doctype html>
+<!--
+ This page is shown when the extension button is clicked, because the
+ "browser_action" field in manifest.json contains the "default_popup" key with
+ value "popup.html".
+ -->
+<html>
+  <head>
+    <title>Mute Defaults</title>
+    <script src="settings.js"></script>
+    <style>
+      body {
+        width: 250px;
+      }
+
+      input[type=checkbox], input[type=radio] {
+        vertical-align: middle;
+        position: relative;
+        bottom: 1px;
+      }
+
+      input[type=radio] {
+        bottom: 2px;
+      }
+
+    </style>
+  </head>
+
+  <body>
+    <h2><a href="http://github.com/jjshoe/MuteDefaults" target="_blank">Mute Defaults</a></h2>
+
+    <label>
+      <input type="checkbox" id="muteMicrophone" name="muteMicrophone"/>
+      Mute the microphone automatically
+    </label>
+
+    <br>
+
+    <label>
+      <input type="checkbox" id="muteCamera" name="muteCamera" />
+      Mute the camera automatically
+    </label>
+
+    <p>
+      For support visit <a href="http://github.com/jjshoe/MuteDefaults/issues" target="_blank">Mute Defaults</a> on github.
+    </p>
+  </body>
+</html>
+
