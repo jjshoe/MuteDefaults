@@ -4,7 +4,7 @@
   "name": "Mute Defaults",
   "short_name": "Mute Defaults",
   "description": "This extension lets you set default mute settings for your microphone and camera in google hangouts.",
-  "version": "1.0",
+  "version": "1.1",
   "homepage_url": "http://github.com/jjshoe/MuteDefaults",
   "icons": { 
     "16": "icon16.png",
