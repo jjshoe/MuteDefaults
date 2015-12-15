@@ -1,24 +1,40 @@
-function hookHangouts () {
-   var microphoneClass = 'IQ';
-   var cameraClass = 'OQ';
+var observer = new MutationObserver(function(mutations) {
+    var microphoneClass = 'IQ';
+    var cameraClass = 'OQ';
 
+    var microphone = document.getElementsByClassName(microphoneClass);
+    var camera = document.getElementsByClassName(cameraClass);
+
+    if (microphone && camera && microphone[0] && camera[0]) {
+        hookHangouts(microphone[0], camera[0]);
+    }
+});
+
+var observerConfig = {
+    childList: true
+};
+
+var targetNode = document.body;
+observer.observe(targetNode, observerConfig);
+
+function hookHangouts(microphone, camera) {
    chrome.storage.sync.get('muteMicrophone', function (result) {
        if (result.muteMicrophone) {
-           var microphone = document.getElementsByClassName(microphoneClass);
-           microphone[0].dispatchEvent(new MouseEvent('mousedown'));
-           microphone[0].dispatchEvent(new MouseEvent('mouseup'));
-           microphone[0].dispatchEvent(new MouseEvent('mouseout'));
+           simulateClick(microphone);
        }
    });
 
    chrome.storage.sync.get('muteCamera', function (result) {
        if (result.muteCamera) {
-           var camera = document.getElementsByClassName(cameraClass);
-           camera[0].dispatchEvent(new MouseEvent('mousedown'));
-           camera[0].dispatchEvent(new MouseEvent('mouseup'));
-           camera[0].dispatchEvent(new MouseEvent('mouseout'));
+           simulateClick(camera);
        }
    });
+
+   observer.disconnect();
 };
 
-window.addEventListener('load', hookHangouts);
+function simulateClick(item) {
+    item.dispatchEvent(new MouseEvent('mousedown'));
+    item.dispatchEvent(new MouseEvent('mouseup'));
+    item.dispatchEvent(new MouseEvent('mouseout'));
+}
