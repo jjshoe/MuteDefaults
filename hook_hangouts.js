@@ -13,8 +13,14 @@ var observerConfig = {
   childList: true
 };
 
-var targetNode = document.body;
-observer.observe(targetNode, observerConfig);
+function mute(muteMicrophone, muteCamera, validElements) {
+  // Try to mute items now
+  var mutedMicrophone = muteDevice('microphone', muteMicrophone, validElements);
+  var mutedCamera = muteDevice('camera', muteCamera, validElements);
+  
+  if (mutedMicrophone == false || mutedCamera == false) {
+    return false;
+  }
 
 function hookHangouts(microphone, camera) {
   chrome.storage.sync.get('muteMicrophone', function (result) {
